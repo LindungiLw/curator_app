@@ -13,10 +13,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    // Waktu tunggu diperpanjang sedikit agar animasi selesai
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+        PageRouteBuilder(
+          transitionDuration: const Duration(milliseconds: 800),
+          pageBuilder: (_, __, ___) => const OnboardingScreen(),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child); // Transisi halus ke halaman berikutnya
+          },
+        ),
       );
     });
   }
@@ -26,55 +33,88 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-
         decoration: const BoxDecoration(
           gradient: RadialGradient(
             colors: [
               Color(0xFF2A1B54),
               AppColors.obsidianBlack,
             ],
-            radius: 0.8,
+            radius: 1.0, // Radius diperbesar agar gradasi lebih lembut
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            const Icon(
-              Icons.account_balance,
-              size: 80,
-              color: AppColors.amethystGlow,
-            ),
-            const SizedBox(height: 20),
-
-            const Text(
-              'CURATOR',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Playfair Display',
-                letterSpacing: 2.0,
-                color: Colors.white,
+        // Menambahkan Animasi Fade-In
+        child: TweenAnimationBuilder(
+          tween: Tween<double>(begin: 0.0, end: 1.0),
+          duration: const Duration(seconds: 2),
+          curve: Curves.easeOut,
+          builder: (context, value, child) {
+            return Opacity(
+              opacity: value,
+              child: Transform.scale(
+                scale: 0.9 + (0.1 * value), // Efek zoom-in sedikit
+                child: child,
               ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              decoration: BoxDecoration(
-                color: AppColors.amethystGlow.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Text(
-                'AI',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Inter',
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Ikon dengan efek Shadow (Glow)
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.amethystGlow.withOpacity(0.5),
+                      blurRadius: 40,
+                      spreadRadius: 10,
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.account_balance,
+                  size: 90,
                   color: Colors.white,
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 30),
+              const Text(
+                'CURATOR',
+                style: TextStyle(
+                  fontSize: 42,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Playfair Display',
+                  letterSpacing: 4.0,
+                  color: AppColors.silverAsh,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.amethystGlow.withOpacity(0.9),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.amethystGlow.withOpacity(0.4),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: const Text(
+                  'AI',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Inter',
+                    color: Colors.white,
+                    letterSpacing: 1.5,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
