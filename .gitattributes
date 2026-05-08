@@ -1,7 +1,6 @@
-# Mengabaikan folder native dari statistik bahasa GitHub
-android/* linguist-vendored
-ios/* linguist-vendored
-linux/* linguist-vendored
-macos/* linguist-vendored
-windows/* linguist-vendored
-web/* linguist-vendored
+android/** linguist-vendored
+ios/** linguist-vendored
+linux/** linguist-vendored
+macos/** linguist-vendored
+windows/** linguist-vendored
+web/** linguist-vendored
