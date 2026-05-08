@@ -69,7 +69,6 @@ class DashboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // Search Bar dengan Glassmorphism
               ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: BackdropFilter(
@@ -98,7 +97,6 @@ class DashboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // BACA DATA DARI DATABASE
               Expanded(
                 child: BlocBuilder<CuratorBloc, CuratorState>(
                   builder: (context, state) {
@@ -139,7 +137,6 @@ class DashboardScreen extends StatelessWidget {
                           final item = state.items[index];
                           return Container(
                             margin: const EdgeInsets.only(bottom: 24),
-                            // Jarak antar card diperlebar
                             decoration: BoxDecoration(
                               color: AppColors.midnightBlue.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(20),
@@ -150,7 +147,6 @@ class DashboardScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // --- UPDATE: AREA FOTO ARTEFAK ---
                                 ClipRRect(
                                   borderRadius: const BorderRadius.vertical(
                                     top: Radius.circular(20),
@@ -161,8 +157,6 @@ class DashboardScreen extends StatelessWidget {
                                     color: AppColors.obsidianBlack.withOpacity(
                                       0.5,
                                     ),
-                                    // Sementara memunculkan ikon jika fotonya masih data bohongan (dummy)
-                                    // Nanti akan otomatis memunculkan foto asli jika link Supabase dimasukkan
                                     child:
                                         item.imagePath == 'dummy_image.jpg' ||
                                                 item.imagePath.isEmpty
@@ -188,9 +182,7 @@ class DashboardScreen extends StatelessWidget {
                                             ),
                                   ),
                                 ),
-                                // --- END AREA FOTO ---
 
-                                // Area Teks (Judul, Kategori, Cerita)
                                 Padding(
                                   padding: const EdgeInsets.all(16),
                                   child: Column(

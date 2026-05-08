@@ -19,7 +19,7 @@ class OnboardingScreen extends StatelessWidget {
             stops: [
               0.0,
               0.6,
-            ], // Memberikan porsi warna hitam lebih banyak di bawah
+            ],
           ),
         ),
         child: SafeArea(
@@ -49,8 +49,7 @@ class OnboardingScreen extends StatelessWidget {
                     color: AppColors.silverAsh,
                   ),
                 ),
-                const Spacer(), // Mendorong Glassmorphism card ke tengah/bawah
-                // GLASSMORPHISM CARD YANG LEBIH HALUS
+                const Spacer(),
                 Center(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(24),
@@ -62,7 +61,6 @@ class OnboardingScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: AppColors.midnightBlue.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(24),
-                          // Border gradient agar efek kaca lebih realistis
                           border: Border.all(
                             color: Colors.white.withOpacity(0.15),
                             width: 1.5,
@@ -100,12 +98,10 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 const Spacer(),
 
-                // TOMBOL DENGAN EFEK GLOW
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      // --- UPDATE DI SINI (SKIP) ---
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
@@ -141,7 +137,6 @@ class OnboardingScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: ElevatedButton(
-                        // --- UPDATE DI SINI (NEXT) ---
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,

@@ -26,7 +26,6 @@ class CuratorBloc extends Bloc<CuratorEvent, CuratorState> {
       }
     });
 
-    // LOGIKA UPLOAD FOTO & SIMPAN DATA
     on<AddCuratorItem>((event, emit) async {
       emit(CuratorLoading());
       try {

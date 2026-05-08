@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Import dotenv
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'core/constants/colors.dart';
 import 'presentation/screens/splash_screen.dart';
 import 'blocs/curator/curator_bloc.dart';
@@ -10,10 +10,8 @@ import 'blocs/curator/curator_event.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 1. Load file .env sebelum menjalankan aplikasi
   await dotenv.load(fileName: ".env");
 
-  // 2. Inisialisasi Supabase menggunakan variabel dari .env
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,

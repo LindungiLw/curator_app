@@ -19,13 +19,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
 
-  // Variabel untuk menampung foto hasil jepretan
   File? _selectedImage;
 
-  // Fungsi untuk membuka Kamera
   Future<void> _pickImage() async {
     final picker = ImagePicker();
-    // Kamu bisa ganti ImageSource.camera menjadi ImageSource.gallery jika ingin ambil dari galeri
     final pickedFile = await picker.pickImage(
       source: ImageSource.camera,
       imageQuality: 80,
@@ -70,7 +67,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // TOMBOL KAMERA YANG SUDAH BERFUNGSI
             GestureDetector(
               onTap: _pickImage,
               child: Container(
@@ -84,7 +80,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     width: 2,
                   ),
                 ),
-                // Menampilkan foto jika sudah memotret, atau menampilkan ikon jika belum
                 child:
                     _selectedImage != null
                         ? ClipRRect(
@@ -179,7 +174,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                           isLoading
                               ? null
                               : () {
-                                // Hanya bisa di-save jika teks TIDAK kosong dan FOTO sudah ada
+
                                 if (_titleController.text.isNotEmpty &&
                                     _categoryController.text.isNotEmpty &&
                                     _selectedImage != null) {
@@ -189,7 +184,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                                       category: _categoryController.text,
                                       imagePath:
                                           _selectedImage!
-                                              .path, // Mengirim jalur file foto aslinya!
+                                              .path,
                                     ),
                                   );
                                 } else {

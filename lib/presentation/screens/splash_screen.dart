@@ -13,7 +13,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Waktu tunggu diperpanjang sedikit agar animasi selesai
     Future.delayed(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
           transitionDuration: const Duration(milliseconds: 800),
           pageBuilder: (_, __, ___) => const OnboardingScreen(),
           transitionsBuilder: (_, animation, __, child) {
-            return FadeTransition(opacity: animation, child: child); // Transisi halus ke halaman berikutnya
+            return FadeTransition(opacity: animation, child: child);
           },
         ),
       );
@@ -39,10 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
               Color(0xFF2A1B54),
               AppColors.obsidianBlack,
             ],
-            radius: 1.0, // Radius diperbesar agar gradasi lebih lembut
+            radius: 1.0,
           ),
         ),
-        // Menambahkan Animasi Fade-In
+
         child: TweenAnimationBuilder(
           tween: Tween<double>(begin: 0.0, end: 1.0),
           duration: const Duration(seconds: 2),
@@ -59,7 +58,6 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Ikon dengan efek Shadow (Glow)
               Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
